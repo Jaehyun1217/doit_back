@@ -3,16 +3,14 @@ package com.example.demo.user.entity;
 import com.example.demo.common.entity.BaseTimeEntity;
 import com.example.demo.user.dto.request.SignUpRequestDto;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 public class User extends BaseTimeEntity {
     /**
      * @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,5 +50,13 @@ public class User extends BaseTimeEntity {
         this.email = email;
         this.username = username;
         this.userType = userType;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

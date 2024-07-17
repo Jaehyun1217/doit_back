@@ -1,25 +1,24 @@
 package com.example.demo.user.service;
 
-
-import com.example.demo.common.security.JwtTokenProvider;
+import com.example.demo.user.dto.response.*;
 import com.example.demo.user.entity.UserType;
 import com.example.demo.user.exception.EmailAlreadyExistException;
 import com.example.demo.user.exception.IdAlreadyExistException;
 import com.example.demo.user.exception.PasswordIncorrectException;
 import com.example.demo.user.exception.UserNotFoundException;
-import com.example.demo.email.service.EmailService;
-import com.example.demo.user.dto.response.SignUpResponseDto;
+import com.example.demo.user.dto.request.UpdateUserRequestDto;
 import com.example.demo.user.repository.UserRepository;
 import com.example.demo.user.entity.User;
 import com.example.demo.user.dto.request.SignInRequestDto;
 import com.example.demo.user.dto.request.SignUpRequestDto;
-import com.example.demo.user.dto.response.FindIdResponseDto;
-import com.example.demo.user.dto.response.FindPssResponseDto;
-import com.example.demo.user.dto.response.SignInResponseDto;
+import com.example.demo.email.service.EmailService;
+import com.example.demo.common.security.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -82,7 +81,7 @@ public class UserService {
             throw new PasswordIncorrectException();
         }
 
-        String token = jwtTokenProvider.createToken(user.getUserId(), UserType.USER);
+        String token = jwtTokenProvider.createToken(String.format("%s:%s",user.getUserId(),UserType.USER.toString()));
         return SignInResponseDto.builder().accessToken(token).build();
     }
 
@@ -112,17 +111,50 @@ public class UserService {
         return FindPssResponseDto.builder().password(password).build();
     }
 
-    // 사용자 계정 삭제 로직
+    public UserInfoResponseDto mypage(org.springframework.security.core.userdetails.User user){
+        System.out.println(user);
+        if (userRepository.findByUserId(user.getUsername()).isPresent()){
+            User userinfo = userRepository.findByUserId(user.getUsername()).get();
+            return UserInfoResponseDto.builder()
+                    .UserId(userinfo.getUserId())
+                    .email(userinfo.getEmail())
+                    .username(userinfo.getUsername())
+                    .build();
+        }else {
+            throw new RuntimeException("회원 정보 없음");
+        }
+    }
+    /**
+     * 마이페이지 정보 수정
+     */
+    public UserInfoResponseDto updateUser(UserDetails user, UpdateUserRequestDto updateUserRequestDto) {
+        User userinfo = userRepository.findByUserId(user.getUsername())
+                .orElseThrow(() -> new RuntimeException("회원 정보 없음"));
 
-    public void deleteUser(String userId) {
-        // 사용자 정보 삭제
-        userRepository.deleteByUserId(userId);
+        // 이메일 변경을 허용하는 경우 이메일 중복 확인
+        if (!userinfo.getEmail().equals(updateUserRequestDto.getEmail()) &&
+                userRepository.findByEmail(updateUserRequestDto.getEmail()).isPresent()) {
+            throw new EmailAlreadyExistException();
+        }
 
-        // 사용자가 수강 중인 강의 삭제
-//        courseRepository.deleteByUserId(userId);
+        userinfo.setEmail(updateUserRequestDto.getEmail());
+        userinfo.setUsername(updateUserRequestDto.getUsername());
+        userRepository.save(userinfo);
 
-        // 사용자가 작성한 댓글 삭제
-//        commentRepository.deleteByUserId(userId);
+        return UserInfoResponseDto.builder()
+                .UserId(userinfo.getUserId())
+                .email(userinfo.getEmail())
+                .username(userinfo.getUsername())
+                .build();
     }
 
+    /**
+     * 마이페이지 계정 삭제
+     */
+    public void deleteUser(UserDetails user) {
+        User userinfo = userRepository.findByUserId(user.getUsername())
+                .orElseThrow(() -> new RuntimeException("회원 정보 없음"));
+
+        userRepository.delete(userinfo);
+    }
 }

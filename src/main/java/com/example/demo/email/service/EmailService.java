@@ -7,7 +7,6 @@ import jakarta.mail.internet.MimeMessage;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class EmailService {
-    @Value("${server.url}")
-    private String serverUrl;
 
     private final JavaMailSender javaMailSender;
     private final Map<String, String> verificationCodes = new HashMap<>(); // 임시 저장을 위함
@@ -32,7 +29,7 @@ public class EmailService {
         verificationCodes.put(dto.getEmail(), verificationCode);
 
         // 보낼 이메일 내용 구성
-        String verificationLink = serverUrl+"/api/emails/verify?email=" + dto.getEmail() + "&code=" + verificationCode;
+        String verificationLink = "http://localhost:8080/api/emails/verify?email=" + dto.getEmail() + "&code=" + verificationCode;
         EmailMessageDto emailMessageDto = EmailMessageDto.builder()
                 .to(dto.getEmail())
                 .subject("이메일 인증 링크")
@@ -48,7 +45,7 @@ public class EmailService {
             mimeMessageHelper.setText(emailMessageDto.getContent(), true);
             javaMailSender.send(mimeMessage);
         } catch (MessagingException e) {
-            System.out.println("email error : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -65,5 +62,4 @@ public class EmailService {
         // 인증 코드를 생성하는 로직 -> 보안적인 부분이라 개발자분이 만드는 것이 좋아보임
         return "123456"; // 예시로 123456 반환, 실제로는 랜덤한 코드 생성 필요
     }
-
 }

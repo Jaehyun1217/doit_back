@@ -27,5 +27,4 @@ public class EmailController {
             return SuccessResponse.of("이메일 인증 실패");
         }
     }
-
 }

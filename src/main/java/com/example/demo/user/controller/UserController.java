@@ -4,16 +4,13 @@ package com.example.demo.user.controller;
 import com.example.demo.common.response.SuccessResponse;
 import com.example.demo.user.dto.request.SignInRequestDto;
 import com.example.demo.user.dto.request.SignUpRequestDto;
-import com.example.demo.user.dto.response.FindIdResponseDto;
-import com.example.demo.user.dto.response.FindPssResponseDto;
-import com.example.demo.user.dto.response.SignInResponseDto;
-import com.example.demo.user.dto.response.SignUpResponseDto;
+import com.example.demo.user.dto.response.*;
 import com.example.demo.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -65,14 +62,9 @@ public class UserController {
         return SuccessResponse.of(userService.findPss(userId, email));
     }
 
-    /**
-     * 회원 계정 탈퇴
-     */
 
-    @DeleteMapping("/mypage/account")
-    public ResponseEntity<String> deleteMyPage(@AuthenticationPrincipal UserDetails userDetails) {
-        String userId = userDetails.getUsername(); // 또는 userId를 얻는 방법
-        userService.deleteUser(userId);
-        return ResponseEntity.ok("계정 탈퇴 되었습니다.");
+    @GetMapping("/mypage")
+    public ResponseEntity<UserInfoResponseDto> getMyPage(@AuthenticationPrincipal User user) {
+        return ResponseEntity.ok().body(userService.mypage(user));
     }
 }

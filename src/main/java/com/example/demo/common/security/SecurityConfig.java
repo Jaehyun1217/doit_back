@@ -1,5 +1,6 @@
 package com.example.demo.common.security;
 
+import com.example.demo.common.config.JwtTokenFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
-
+    private String[] allowUrl = {"/","/api/users/signup", "/api/users/signin", "/api/users/findId", "/api/users/findPss", "/api/emails/verify"};
     /**
      * 암호화 메소드
      */
@@ -44,9 +45,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/users/signup", "/api/users/signin", "/api/users/findId", "/api/users/findPss", "/api/emails/verify","/error/**").permitAll()
-                        .requestMatchers("/api/users/logout", "/api/test").hasAnyAuthority("USER","ADMIN")
-                        .anyRequest().hasAnyAuthority("ADMIN")
+                        .requestMatchers(allowUrl).permitAll()
+//                        .requestMatchers("/api/users/logout", "/api/test").hasAnyAuthority("USER","ADMIN")
+                                .anyRequest().authenticated()
+//                        .anyRequest().hasAnyAuthority("ADMIN")
                 )
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .build();
