@@ -2,8 +2,19 @@ spring:
   application:
     name: demo
   profiles:
-    include: db
+    include: db, email
 
 logging:
   level:
     root: DEBUG
+
+application:
+  security:
+    jwt:
+      secret-key: D4A9C8F77E3F67459B1B43DCC67A20FB2A7D8A9E2D7A11E9F3F8B0AA1D7E0C42
+      expiration: 86400000
+
+server:
+  error:
+    whitelabel:
+      enabled: false
