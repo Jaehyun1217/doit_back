@@ -1,7 +1,7 @@
 package com.example.demo.user.exception;
 
 import com.example.demo.common.exception.BaseErrorCode;
-import com.example.demo.common.constant.StaticValue;
+import com.example.demo.common.exception.StaticValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
 package com.example.demo.common.exception;
 
-import static com.example.demo.common.constant.StaticValue.*;
+import static com.example.demo.common.exception.StaticValue.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

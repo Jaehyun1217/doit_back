@@ -1,6 +1,5 @@
 package com.example.demo.common.exception;
 
-//import com.example.demo.user.exception.UnauthorizedUserException;
 import java.net.BindException;
 
 import com.example.demo.user.exception.UnauthorizedUserException;
