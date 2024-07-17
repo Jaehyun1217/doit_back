@@ -1,6 +1,6 @@
 package com.example.demo.common.security;
 
-import com.example.demo.domain.user.entity.UserType;
+import com.example.demo.user.entity.UserType;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

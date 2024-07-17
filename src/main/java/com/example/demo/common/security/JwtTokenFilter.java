@@ -1,6 +1,6 @@
 package com.example.demo.common.security;
 
-import com.example.demo.domain.user.exception.UserErrorCode;
+import com.example.demo.user.exception.UserErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

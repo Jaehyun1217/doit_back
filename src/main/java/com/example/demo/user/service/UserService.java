@@ -2,15 +2,15 @@ package com.example.demo.user.service;
 
 
 import com.example.demo.common.security.JwtTokenProvider;
-import com.example.demo.domain.user.entity.UserType;
-import com.example.demo.domain.user.exception.EmailAlreadyExistException;
-import com.example.demo.domain.user.exception.IdAlreadyExistException;
-import com.example.demo.domain.user.exception.PasswordIncorrectException;
-import com.example.demo.domain.user.exception.UserNotFoundException;
+import com.example.demo.user.entity.UserType;
+import com.example.demo.user.exception.EmailAlreadyExistException;
+import com.example.demo.user.exception.IdAlreadyExistException;
+import com.example.demo.user.exception.PasswordIncorrectException;
+import com.example.demo.user.exception.UserNotFoundException;
 import com.example.demo.email.service.EmailService;
 import com.example.demo.user.dto.response.SignUpResponseDto;
 import com.example.demo.user.repository.UserRepository;
-import com.example.demo.domain.user.entity.User;
+import com.example.demo.user.entity.User;
 import com.example.demo.user.dto.request.SignInRequestDto;
 import com.example.demo.user.dto.request.SignUpRequestDto;
 import com.example.demo.user.dto.response.FindIdResponseDto;
@@ -111,4 +111,18 @@ public class UserService {
         String password = userRepository.findByUserIdAndEmail(userId, email).get().getPassword();
         return FindPssResponseDto.builder().password(password).build();
     }
+
+    // 사용자 계정 삭제 로직
+
+    public void deleteUser(String userId) {
+        // 사용자 정보 삭제
+        userRepository.deleteByUserId(userId);
+
+        // 사용자가 수강 중인 강의 삭제
+//        courseRepository.deleteByUserId(userId);
+
+        // 사용자가 작성한 댓글 삭제
+//        commentRepository.deleteByUserId(userId);
+    }
+
 }

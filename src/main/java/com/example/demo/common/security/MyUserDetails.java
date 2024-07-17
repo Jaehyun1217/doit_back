@@ -1,7 +1,7 @@
 package com.example.demo.common.security;
 
-import com.example.demo.domain.user.entity.User;
-import com.example.demo.domain.user.exception.UserNotFoundException;
+import com.example.demo.user.entity.User;
+import com.example.demo.user.exception.UserNotFoundException;
 import com.example.demo.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

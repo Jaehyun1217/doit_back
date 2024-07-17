@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/users/signup", "/api/users/signin", "/api/users/findId", "/api/users/findPss", "/api/emails/verify").permitAll()
+                        .requestMatchers("/api/users/signup", "/api/users/signin", "/api/users/findId", "/api/users/findPss", "/api/emails/verify","/error/**").permitAll()
                         .requestMatchers("/api/users/logout", "/api/test").hasAnyAuthority("USER","ADMIN")
                         .anyRequest().hasAnyAuthority("ADMIN")
                 )
