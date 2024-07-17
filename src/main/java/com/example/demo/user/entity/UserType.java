@@ -1,4 +1,4 @@
-package com.example.demo.domain.user.entity;
+package com.example.demo.user.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 

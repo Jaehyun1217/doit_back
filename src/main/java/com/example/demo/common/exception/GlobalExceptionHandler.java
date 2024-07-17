@@ -2,6 +2,8 @@ package com.example.demo.common.exception;
 
 //import com.example.demo.user.exception.UnauthorizedUserException;
 import java.net.BindException;
+
+import com.example.demo.user.exception.UnauthorizedUserException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -84,14 +86,14 @@ public class GlobalExceptionHandler {
 
     /**
      * 인증되지 않은 사용자 예외 처리
-     *//*
+     */
     @ResponseBody
     @ExceptionHandler(UnauthorizedUserException.class)
     private ResponseEntity<ErrorResponse> handleUnauthorizedUserException(UnauthorizedUserException e) {
         log.error("UnauthorizedUserException Error", e);
         ErrorResponse error = ErrorResponse.of(e.getErrorCode());
         return ResponseEntity.status(error.getHttpStatus()).body(error);
-    }*/
+    }
 
     /**
      * 나머지 에러가 난 경우
