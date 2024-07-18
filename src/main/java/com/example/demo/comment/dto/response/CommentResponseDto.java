@@ -16,16 +16,12 @@ public class CommentResponseDto {
     Board boardId;
     User user;
     String comment;
-    LocalDateTime createComment;
-    LocalDateTime updateComment;
 
     public CommentResponseDto(Comment comment){
         this.commentId=comment.getId();
         this.boardId=comment.getBoard();
         this.user=comment.getUser();
         this.comment=comment.getComment();
-        this.createComment=comment.getCreateComment();
-        this.updateComment=comment.getUpdateComment();
     }
 
 }

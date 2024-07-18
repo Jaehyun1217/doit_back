@@ -32,7 +32,7 @@ public class BoardController {
     //게시판 작성하기
     @PostMapping("/createpost")
     public ResponseEntity<BoardResponse> createPost(@RequestBody BoardRequest boardRequest,@AuthenticationPrincipal User user){
-        return ResponseEntity.created(URI.create("/createpost")).body(boardService.createPost(boardRequest));
+        return ResponseEntity.created(URI.create("/createpost")).body(boardService.createPost(boardRequest, user));
     }
 
     //특정 게시글 보기
@@ -44,7 +44,7 @@ public class BoardController {
     //게시판 수정하기
     @PostMapping("/updatepost/{boardid}")
     public ResponseEntity<ResponseDTO> updatePost(@PathVariable("boardid") Long boardId, @RequestBody BoardRequest boardRequest, @AuthenticationPrincipal User user){
-        return ResponseEntity.created(URI.create("/updatepost/"+boardId)).body(boardService.updatePost(boardId,boardRequest));
+        return ResponseEntity.created(URI.create("/updatepost/"+boardId)).body(boardService.updatePost(boardId,boardRequest, user));
     }
 
     //게시판 삭제하기

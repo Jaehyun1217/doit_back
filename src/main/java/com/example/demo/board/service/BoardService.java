@@ -2,12 +2,13 @@ package com.example.demo.board.service;
 
 import com.example.demo.board.entity.Board;
 import com.example.demo.board.repository.BoardRepository;
+import com.example.demo.user.entity.User;
+import com.example.demo.user.exception.UserNotFoundException;
 import com.example.demo.user.repository.UserRepository;
 import com.example.demo.common.response.ResponseDTO;
 import com.example.demo.board.dto.request.BoardRequest;
 import com.example.demo.board.dto.response.BoardResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,6 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
-    private final User user;
 
     //게시판 전체보기 (날짜기준 내림차순)
     @Transactional(readOnly = true)
@@ -33,9 +33,10 @@ public class BoardService {
 
     //게시글 작성
     @Transactional
-    public BoardResponse createPost(BoardRequest boardRequest){
+    public BoardResponse createPost(BoardRequest boardRequest, org.springframework.security.core.userdetails.User resuser){
+        User user = getUser(resuser);
         Board board=Board.from(boardRequest);
-        boardRequest.setUser();
+        boardRequest.setUser(user);
         boardRepository.save(board); //데이터베이스에 저장
         return new BoardResponse(board); //프론트에 엔티티 전송
     }
@@ -57,11 +58,11 @@ public class BoardService {
 
     //게시글 수정
     @Transactional
-    public ResponseDTO updatePost(Long boardid, BoardRequest boardRequest){
+    public ResponseDTO updatePost(Long boardid, BoardRequest boardRequest, org.springframework.security.core.userdetails.User user){
         if(boardRepository.findById(boardid).isPresent()){
             Board board = boardRepository.findById(boardid).get(); //특정 보드 가져오기
             if(Objects.equals(board.getUser(), boardRequest.getUser())){
-                boardRequest.setUser();
+                boardRequest.setUser(getUser(user));
                 board.setTitle(boardRequest.getTitle());
                 board.setContent(boardRequest.getContent());
                 boardRepository.save(board);
@@ -77,7 +78,7 @@ public class BoardService {
 
     //게시글 삭제
     @Transactional
-    public ResponseDTO deleteBoard(Long boardId, User user){
+    public ResponseDTO deleteBoard(Long boardId, org.springframework.security.core.userdetails.User user){
         if(boardRepository.findById(boardId).isPresent()){
             Board board=boardRepository.findById(boardId).get();
             if(Objects.equals(board.getUser().getUserId(), user.getUsername())) {
@@ -90,5 +91,13 @@ public class BoardService {
             }
         }
         else throw new RuntimeException("찾을 수 없는 게시물 입니다.");
+    }
+    //user 정보 조회
+    private User getUser(org.springframework.security.core.userdetails.User user){
+        if (userRepository.findByUserId(user.getUsername()).isPresent()){
+            return userRepository.findByUserId(user.getUsername()).get();
+        }else{
+            throw new UserNotFoundException();
+        }
     }
 }
