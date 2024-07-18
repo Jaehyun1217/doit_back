@@ -29,6 +29,7 @@ public class UserService {
     private final EmailService emailService;
     private final Map<String, SignUpRequestDto> temporaryUserStorage = new HashMap<>(); // 임시 저장소
 
+
     /**
      * 회원가입 로직
      * email, userId 중복 확인 후 중복인 경우 에러 반환
@@ -156,5 +157,18 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("회원 정보 없음"));
 
         userRepository.delete(userinfo);
+    }
+
+    public void deleteAccount() {
+    }
+
+    public void deleteAccount(String userId, String username, String password, String email) {
+        User user = userRepository.findByUserIdAndEmail(userId, email)
+                .orElseThrow(UserNotFoundException::new);
+
+        if (!user.getPassword().equals(password) || !user.getUsername().equals(username)){
+            throw new PasswordIncorrectException();
+        }
+        userRepository.delete(user);
     }
 }

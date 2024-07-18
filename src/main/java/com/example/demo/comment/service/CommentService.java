@@ -15,11 +15,11 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
     //댓글 작성하기
-    @Transactional
+    /*@Transactional
     public CommentResponseDto createComment(CommentRequestDto commentRequestDto){
-        Comment comment=comment.f
+        Comment comment=comment
 
         Comment savedComment = commentRepository.save(comment);
-        return savedComment.
-    }
+        return savedComment
+    }*/
 }
