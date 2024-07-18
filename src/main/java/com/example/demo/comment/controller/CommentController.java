@@ -19,9 +19,8 @@ public class CommentController {
 
     @PostMapping("/{boardid}}")
     public ResponseEntity<CommentResponseDto> createComment(@RequestBody CommentRequestDto commentRequestDto, @PathVariable("commentId") Long boardId, @AuthenticationPrincipal User user){
-        commentRequestDto.setUserId(user.getUsername());
-        CommentResponseDto responseDto = commentService.createComment(commentRequestDto, boardId);
-        return ResponseEntity.created(URI.create("/comment/" + responseDto.getCommentId())).body(responseDto);
+
+        return ResponseEntity.created(URI.create("/comment/")).body(commentService.createComment(commentRequestDto, boardId ,user));
     }
 
 }
