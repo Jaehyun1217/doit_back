@@ -5,15 +5,13 @@ import com.example.demo.comment.dto.request.CommentRequestDto;
 import com.example.demo.common.entity.BaseTimeEntity;
 import com.example.demo.user.entity.User;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class Comment extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -81,7 +81,7 @@ public class BoardService {
     public ResponseDTO deleteBoard(Long boardId, org.springframework.security.core.userdetails.User user){
         if(boardRepository.findById(boardId).isPresent()){
             Board board=boardRepository.findById(boardId).get();
-            if(Objects.equals(board.getUser().getUserId(), user.getUsername())) {
+            if(Objects.equals(board.getUser().getUsername(), user.getUsername())) {
                 boardRepository.delete(board);
                 return ResponseDTO.builder()
                         .message("게시글이 삭제되었습니다.")
@@ -94,8 +94,8 @@ public class BoardService {
     }
     //user 정보 조회
     private User getUser(org.springframework.security.core.userdetails.User user){
-        if (userRepository.findByUserId(user.getUsername()).isPresent()){
-            return userRepository.findByUserId(user.getUsername()).get();
+        if (userRepository.findByUsername(user.getUsername()).isPresent()){
+            return userRepository.findByUsername(user.getUsername()).get();
         }else{
             throw new UserNotFoundException();
         }

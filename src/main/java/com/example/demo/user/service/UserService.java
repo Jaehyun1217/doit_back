@@ -29,6 +29,7 @@ public class UserService {
     private final EmailService emailService;
     private final Map<String, SignUpRequestDto> temporaryUserStorage = new HashMap<>(); // 임시 저장소
 
+
     /**
      * 회원가입 로직
      * email, userId 중복 확인 후 중복인 경우 에러 반환
@@ -42,7 +43,7 @@ public class UserService {
         }
 
         // userId 중복 확인
-        if (userRepository.findByUserId(dto.getUserId()).isPresent()) {
+        if (userRepository.findByUsername(dto.getUserId()).isPresent()) {
             throw new IdAlreadyExistException();
         }
 
@@ -74,14 +75,14 @@ public class UserService {
     public SignInResponseDto signIn(SignInRequestDto dto) {
 
         // 유저를 찾고 없으면 에러 반환
-        User user = userRepository.findByUserId(dto.getUserId()).orElseThrow(UserNotFoundException::new);
+        User user = userRepository.findByUsername(dto.getUserId()).orElseThrow(UserNotFoundException::new);
 
         // 유저의 비밀번호가 일치하는지 확인하고 일치하지 않으면 에러 반환
         if (!user.getPassword().equals(dto.getPassword())) {
             throw new PasswordIncorrectException();
         }
 
-        String token = jwtTokenProvider.createToken(String.format("%s:%s",user.getUserId(),UserType.USER.toString()));
+        String token = jwtTokenProvider.createToken(user.getUsername(), UserType.USER);
         return SignInResponseDto.builder().accessToken(token).build();
     }
 
@@ -94,7 +95,7 @@ public class UserService {
             throw new UserNotFoundException();
         }
 
-        String userId = userRepository.findByEmail(email).get().getUserId();
+        String userId = userRepository.findByEmail(email).get().getUsername();
         return FindIdResponseDto.builder().userId(userId).build();
     }
 
@@ -103,22 +104,22 @@ public class UserService {
      */
     public FindPssResponseDto findPss(String userId, String email) {
 
-        if (userRepository.findByUserIdAndEmail(userId, email).isEmpty()) {
+        if (userRepository.findByUsernameAndEmail(userId, email).isEmpty()) {
             throw new UserNotFoundException();
         }
 
-        String password = userRepository.findByUserIdAndEmail(userId, email).get().getPassword();
+        String password = userRepository.findByUsernameAndEmail(userId, email).get().getPassword();
         return FindPssResponseDto.builder().password(password).build();
     }
 
     public UserInfoResponseDto mypage(org.springframework.security.core.userdetails.User user){
         System.out.println(user);
-        if (userRepository.findByUserId(user.getUsername()).isPresent()){
-            User userinfo = userRepository.findByUserId(user.getUsername()).get();
+        if (userRepository.findByUsername(user.getUsername()).isPresent()){
+            User userinfo = userRepository.findByUsername(user.getUsername()).get();
             return UserInfoResponseDto.builder()
-                    .UserId(userinfo.getUserId())
+                    .UserId(userinfo.getUsername())
                     .email(userinfo.getEmail())
-                    .username(userinfo.getUsername())
+                    .username(userinfo.getName())
                     .build();
         }else {
             throw new RuntimeException("회원 정보 없음");
@@ -128,7 +129,7 @@ public class UserService {
      * 마이페이지 정보 수정
      */
     public UserInfoResponseDto updateUser(UserDetails user, UpdateUserRequestDto updateUserRequestDto) {
-        User userinfo = userRepository.findByUserId(user.getUsername())
+        User userinfo = userRepository.findByUsername(user.getUsername())
                 .orElseThrow(() -> new RuntimeException("회원 정보 없음"));
 
         // 이메일 변경을 허용하는 경우 이메일 중복 확인
@@ -138,13 +139,13 @@ public class UserService {
         }
 
         userinfo.setEmail(updateUserRequestDto.getEmail());
-        userinfo.setUsername(updateUserRequestDto.getUsername());
+        userinfo.setName(updateUserRequestDto.getUsername());
         userRepository.save(userinfo);
 
         return UserInfoResponseDto.builder()
-                .UserId(userinfo.getUserId())
+                .UserId(userinfo.getUsername())
                 .email(userinfo.getEmail())
-                .username(userinfo.getUsername())
+                .username(userinfo.getName())
                 .build();
     }
 
@@ -152,9 +153,22 @@ public class UserService {
      * 마이페이지 계정 삭제
      */
     public void deleteUser(UserDetails user) {
-        User userinfo = userRepository.findByUserId(user.getUsername())
+        User userinfo = userRepository.findByUsername(user.getUsername())
                 .orElseThrow(() -> new RuntimeException("회원 정보 없음"));
 
         userRepository.delete(userinfo);
+    }
+
+    public void deleteAccount() {
+    }
+
+    public void deleteAccount(String userId, String username, String password, String email) {
+        User user = userRepository.findByUsernameAndEmail(userId, email)
+                .orElseThrow(UserNotFoundException::new);
+
+        if (!user.getPassword().equals(password) || !user.getName().equals(username)){
+            throw new PasswordIncorrectException();
+        }
+        userRepository.delete(user);
     }
 }

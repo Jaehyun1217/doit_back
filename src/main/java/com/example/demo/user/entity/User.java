@@ -22,13 +22,13 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userId;
+    private String username;
 
     private String password;
 
     private String email;
 
-    private String username;
+    private String name;
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
@@ -45,18 +45,10 @@ public class User extends BaseTimeEntity {
     }
     @Builder
     public User(String userId, String password, String email, String username, UserType userType) {
-        this.userId = userId;
+        this.username = userId;
         this.password = password;
         this.email = email;
-        this.username = username;
+        this.name = username;
         this.userType = userType;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }
