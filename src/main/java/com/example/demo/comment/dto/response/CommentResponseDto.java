@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 
 
 @Data
-@Builder
 public class CommentResponseDto {
     Long commentId;
     Board boardId;
     User user;
     String comment;
 
+    @Builder
     public CommentResponseDto(Comment comment){
         this.commentId=comment.getId();
         this.boardId=comment.getBoard();
