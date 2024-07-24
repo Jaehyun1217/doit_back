@@ -14,8 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
-
 @Service
 @RequiredArgsConstructor
 public class CommentService {
@@ -34,8 +32,8 @@ public class CommentService {
 
     //댓글 수정하기
     @Transactional
-    public CommentResponseDto updateComment(CommentRequestDto commentRequestDto, Long commentId, org.springframework.security.core.userdetails.User resUser){
-       Comment comment=commentRepository.findById(commentId).orElseThrow(()->new RuntimeException("댓글이 없습니다."));
+    public CommentResponseDto updateComment(CommentRequestDto commentRequestDto, Comment commentId, org.springframework.security.core.userdetails.User resUser){
+        Comment comment=commentRepository.findByComment(commentId).orElseThrow(()->new RuntimeException("댓글이 없습니다."));
 
         User user=getUser(resUser);
         if(!commentRequestDto.getUser().getUsername().equals(user.getUsername())){
@@ -50,18 +48,15 @@ public class CommentService {
 
     //댓글 삭제하기
     @Transactional
-    public CommentResponseDto deleteComment(Long commentId, org.springframework.security.core.userdetails.User resUser){
-        Comment comment=commentRepository.findById(commentId).orElseThrow(()->new RuntimeException("댓글이 없습니다."));
+    public void deleteComment(CommentRequestDto commentRequestDto, Comment commentId, org.springframework.security.core.userdetails.User resUser){
+        Comment comment=commentRepository.findByComment(commentId).orElseThrow(()->new RuntimeException("댓글이 없습니다."));
 
         User user = getUser(resUser);
-        if(Objects.equals(comment.getUser().getUsername(), user.getUsername())){
-            commentRepository.delete(comment);
-            return CommentResponseDto.builder()
-                    .build();
-        }else{
+        if(!commentRequestDto.getUser().getUsername().equals(user.getUsername())){
             throw new RuntimeException("삭제 권한이 없습니다.");
+        }else{
+            commentRepository.delete(comment);
         }
-
     }
 
     //user 정보 조회

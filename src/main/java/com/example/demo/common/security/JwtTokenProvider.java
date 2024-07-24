@@ -10,7 +10,6 @@ import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -20,12 +19,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * Jwt 와 관련된 기능들을 모아놓은 클래스
  */
-@Service
+@Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
 

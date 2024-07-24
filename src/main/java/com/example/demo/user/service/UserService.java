@@ -6,7 +6,6 @@ import com.example.demo.user.exception.EmailAlreadyExistException;
 import com.example.demo.user.exception.IdAlreadyExistException;
 import com.example.demo.user.exception.PasswordIncorrectException;
 import com.example.demo.user.exception.UserNotFoundException;
-import com.example.demo.user.dto.request.UpdateUserRequestDto;
 import com.example.demo.user.repository.UserRepository;
 import com.example.demo.user.entity.User;
 import com.example.demo.user.dto.request.SignInRequestDto;
@@ -127,9 +126,9 @@ public class UserService {
     }
     /**
      * 마이페이지 정보 수정
-     */
+     *//*
     public UserInfoResponseDto updateUser(UserDetails user, UpdateUserRequestDto updateUserRequestDto) {
-        User userinfo = userRepository.findByUsername(user.getUsername())
+        User userinfo = userRepository.findByUserName(user.getUsername())
                 .orElseThrow(() -> new RuntimeException("회원 정보 없음"));
 
         // 이메일 변경을 허용하는 경우 이메일 중복 확인
@@ -147,7 +146,7 @@ public class UserService {
                 .email(userinfo.getEmail())
                 .username(userinfo.getName())
                 .build();
-    }
+    }*/
 
     /**
      * 마이페이지 계정 삭제
@@ -170,5 +169,12 @@ public class UserService {
             throw new PasswordIncorrectException();
         }
         userRepository.delete(user);
+    }
+    public User getUser(org.springframework.security.core.userdetails.User user){
+        if (userRepository.findByUsername(user.getUsername()).isPresent()){
+            return userRepository.findByUsername(user.getUsername()).get();
+        }else{
+            throw new UserNotFoundException();
+        }
     }
 }
