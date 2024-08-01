@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 후</title>
+    <link rel="stylesheet" th:href="/css/로그인 후.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="">
+            <img th:src="@{/images/LOGO.png}" alt="COC Logo" class="logo">
+        </a>
+        <form action="/search" method="get" class="search-form">
+            <input type="text" name="query" class="search-bar">
+            <button type="submit" class="search-button">
+                <img th:src="@{/images/Search.png}" alt="검색">
+            </button>
+        </form>        
+            <ul class="Header__btn__txt">
+                <li class="lecture"><a href="#">강의</a></li>
+                <li class="teacher"><a href="#">강사</a></li>
+                <li class="comunity"><a href="#">커뮤니티</a></li>
+                <li class="FAQ"><a href="#">FAQ</a></li>
+                <li class="user"><a href="#"></a></li>
+            </ul>
+        </a>
+        </header>
+    </div>
+    </body>
+</html>

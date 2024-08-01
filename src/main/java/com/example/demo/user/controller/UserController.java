@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
-
 public class UserController {
 
     private final UserService userService;
@@ -26,18 +28,19 @@ public class UserController {
      * 회원가입
      */
     @PostMapping("/signup")
-    public SuccessResponse<SignUpResponseDto> signup(@Valid @RequestBody SignUpRequestDto dto){
-        SignUpResponseDto response = userService.signup(dto);
-        return SuccessResponse.of(response);
+    public ResponseEntity<SignUpResponseDto> signup(@RequestBody SignUpRequestDto dto){
+        System.out.println(dto.getUserId());
+        System.out.println(dto.getEmail());
+        System.out.println(dto.getUsername());
+        System.out.println(dto.getPassword());
+        return ResponseEntity.created(URI.create(("/signup"))).body(userService.signup(dto));
     }
-
     /**
      * 로그인
      */
     @PostMapping("/signin")
-    public SuccessResponse<SignInResponseDto> signIn(@RequestBody SignInRequestDto dto) {
-        SignInResponseDto response = userService.signIn(dto);
-        return SuccessResponse.of(response);
+    public SignInResponseDto signIn(@ModelAttribute SignInRequestDto dto) {
+        return userService.signIn(dto);
     }
 
     /**

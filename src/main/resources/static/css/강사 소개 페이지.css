@@ -1,0 +1,184 @@
+a{ /* a태그 초기화*/
+    text-decoration: none;
+    color: white;
+}
+
+
+li{ /* li태그 초기화*/
+    list-style: none;   
+}
+
+body { /* body부분  초기화*/
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container { /* container 1920px로 고정 100%가 더 좋음 초기화*/
+    width: 100%;
+}
+
+header { /* 여기부터 헤더 부분 초기화*/
+    display: flex;
+    align-items: center;
+    background-color: #05144e;
+    padding: 10px;
+}
+
+.logo { /* 로고 200px 중요!! 초기화*/
+    width: 200px;
+    height: auto;
+}
+
+.search-form { /* Header Search form 태그 상위*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 65%;
+}
+
+.search-bar { /*Header 검색 창*/
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.search-button { /*Header 검색 버튼 */
+    position: absolute;
+    right: 10px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.search-button img { /*Header 검색 버튼 이미지 */
+    width: 20px;
+    height: 20px;
+}
+
+.Header__btn__txt{ /*오른쪽 상단 메뉴얼*/
+    width:500px;
+    display:flex;
+    font-size: 23px;
+    color:#fff;
+}
+
+.lecture{ /*오른쪽 상단 메뉴얼 하위 자식*/
+    padding-right: 44px;
+}
+
+.teacher{
+    padding-right: 44px;
+}
+
+.comunity{
+    padding-right: 44px;
+}
+
+.sub__title{ /*중간 로고 상위계층(부모)*/
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav__main { /*중간로고 위치작업*/
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.nav__main li { /*중간 로고 gap 하위계층(자식)*/
+    margin: auto 20px;
+}
+
+.nav__main li { /*중간로고 애니메이션 효과 0.5s 크기 커졋다 줄어듬*/
+    transition: transform 0.5s ease; 
+}
+
+.nav__main li:hover { /*마우스 */
+    transform: scale(1.2); /*현재 로고의 크기에서 1.2배 증가됌*/
+}
+
+.main__page{ /*메인 페이지 크기 및 색 지정 (상위)*/
+padding: 20px;
+background-color: #fff;
+}
+
+.search__list__form { /* main Search form 태그 상위*/
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+width: 50%;
+margin:0 auto 15px auto;
+}
+
+.search__list__bar { /*main 검색 창*/
+width: 100%;
+padding: 10px 40px 10px 15px;
+border: 1px solid #ccc;
+border-radius: 15px;
+font-size: 16px;
+}
+
+.search__list__btn { /*main 검색 버튼 */
+position: absolute;
+right: 10px;
+border: none;
+background: none;
+padding: 0;
+cursor: pointer;
+}
+
+.search__list__btn__img{ /*Header 검색 버튼 이미지 (여기부분 헤더 부분이랑 px다름 말할거 있음 말하셈)*/ 
+width: 30px;
+height: 30px;
+}
+
+.introduce__txt1 {
+    text-align: left;
+}
+
+.introduce__box {
+    width: 240px;
+    height: 300px;
+    border: 0 solid #D9D9D9;
+    background-color: #D9D9D9;
+    position: relative;
+}
+
+.introduce__item2 {
+    position: absolute;
+    left:30%;
+    top:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강의페이지</title>
+    <link rel="stylesheet" th:href="@{/css/강사 소개 페이지.css}">
+</head>
+<body>
+    <div class="container">
+        <header th:replace="~{layout/fragments :: fragment-header}">
+        </header>
+        <nav class="sub__title">
+            <ul class="nav__main">
+                <li><a href="#"><img th:src="@{/images/item.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/HTML5.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/React.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Vue.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Python.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Java.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Node.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Spring.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Flutter.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/C.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/C++.png}"></a></li>
+            </ul>
+        </nav>
+        <main class="main__page">
+            <form action="/search" method="get" class="search__list__form">
+                <input type="text" name="query" class="search__list__bar" placeholder="찾을 선생님을 검색하세요!">
+                <button type="submit" class="search__list__btn">
+                    <img th:src="@{/images/Search.png}" alt="검색" class="search__list__btn__img">
+                </button>
+            </form>
+            </main>
+            <div class="main__page">
+                <h4 class="introduce__txt1">소개글</h4>
+                <ul class="introduce__box">
+                    <li class="introduce__item2"><h4>김재현 선생님</h4></li>
+                </ul>
+            </div>
+        </div>
+    <script th:replace="~{layout/fragments :: fragment-script}"></script>
+    </body>
+</html>

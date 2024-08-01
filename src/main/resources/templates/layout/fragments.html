@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="fragment-head (title)">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          charset="UTF-8">
+    <title th:text="${title}"></title>
+
+    <!-- Import bootstrap -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+    <header  th:fragment="fragment-header">
+        <a href="/">
+            <img th:src="@{/images/LOGO.png}" alt="COC Logo" class="logo">
+        </a>
+        <form action="/search" method="get" class="search-form">
+            <input type="text" name="query" class="search-bar">
+            <button type="submit" class="search-button">
+                <img th:src="@{/images/Search.png}" alt="검색">
+            </button>
+        </form>
+        <ul class="Header__btn__txt">
+            <li class="lecture"><a href="/lecture/info">강의</a></li>
+            <li class="teacher"><a href="/instructor">선생님</a></li>
+            <li class="comunity"><a href="#">커뮤니티</a></li>
+            <li class="login">
+                <a class="nav-link" id="nav-login-button">로그인</a>
+                <form id="form-logout" th:method="post" th:action="@{~/api/member/logout}">
+                    <a class="nav-link" id="nav-logout-button">로그아웃</a>
+                </form>
+            </li>
+        </ul>
+        </a>
+    </header>
+    <script th:fragment="fragment-script">
+        const navLoginButton = document.getElementById('nav-login-button');
+        const formLogout = document.getElementById('form-logout');
+        const navLogoutButton = document.getElementById('nav-logout-button');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('Username');
+
+            showNavigationButton(username);
+        });
+
+        navLoginButton.addEventListener('click', () => {
+            redirectLoginPage();
+        });
+
+        navLogoutButton.addEventListener('click', (e) => {
+            if (window.confirm('Are you sure want to logout?')) {
+                logoutProcess();
+            } else {
+                e.preventDefault();
+            }
+        });
+
+        function showNavigationButton(username) {
+            if (username) {
+                navLoginButton.style.display = 'none';
+                formLogout.style.display = 'block';
+            } else {
+                navLoginButton.style.display = 'block';
+                formLogout.style.display = 'none';
+            }
+        }
+
+        function redirectLoginPage() {
+            window.location.href = '/login';
+        }
+
+        function logoutProcess() {
+            const form = document.getElementById('form-logout');
+            alert('Logout Successfully!!!');
+            localStorage.clear();
+            form.submit();
+        }
+    </script>
+</body>
+</html>

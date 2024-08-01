@@ -1,0 +1,254 @@
+a{ /* a태그 초기화*/
+    text-decoration: none;
+    color: white;
+}
+
+
+li{ /* li태그 초기화*/
+    list-style: none;   
+}
+
+body { /* body부분  초기화*/
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container { /* container 1920px로 고정 100%가 더 좋음 초기화*/
+    width: 100%;
+}
+
+header { /* 여기부터 헤더 부분 초기화*/
+    display: flex;
+    align-items: center;
+    background-color: #05144e;
+    padding: 10px;
+}
+
+.logo { /* 로고 200px 중요!! 초기화*/
+    width: 200px;
+    height: auto;
+}
+
+.search-form { /* Header Search form 태그 상위*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 55%;
+}
+
+.search-bar { /*Header 검색 창*/
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.search-button { /*Header 검색 버튼 */
+    position: absolute;
+    right: 10px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.search-button img { /*Header 검색 버튼 이미지 */
+    width: 20px;
+    height: 20px;
+}
+
+.Header__btn__txt{ /*오른쪽 상단 메뉴얼*/
+    width:500px;
+    display:flex;
+    font-size: 23px;
+    color:#fff;
+}
+
+.lecture{ /*오른쪽 상단 메뉴얼 하위 자식*/
+    padding-top:7px;
+    padding-right: 44px;
+}
+
+.teacher{
+    padding-top:7px;
+    padding-right: 44px;
+}
+
+.comunity{
+    padding-top:7px;
+    padding-right: 44px;
+}
+
+.FAQ{
+    padding-top:10px;
+    padding-right: 44px;
+}
+
+.user{
+    width:50px;
+    height: 50px;
+    background-color: white;
+    border:0 solid white;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.sub__title{ /*중간 로고 상위계층(부모)*/
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav__main { /*중간로고 위치작업*/
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.nav__main li { /*중간 로고 gap 하위계층(자식)*/
+    margin: auto 20px;
+}
+
+.nav__main li { /*중간로고 애니메이션 효과 0.5s 크기 커졋다 줄어듬*/
+    transition: transform 0.5s ease; 
+}
+
+.nav__main li:hover { /*마우스 */
+    transform: scale(1.2); /*현재 로고의 크기에서 1.2배 증가됌*/
+}
+
+.main__page{ /*메인 페이지 크기 및 색 지정 (상위)*/
+padding: 20px;
+background-color: #fff;
+}
+
+.option__txt,
+.userguide__txt,
+.password__txt {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.naming__Box {
+    margin: auto;
+    width: 80%;
+    max-width: 500px;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 70px;
+    text-align: center;
+    padding: 20px;
+}
+
+.user__name,
+.user__email,
+.user__op {
+    margin: 10px 0;
+}
+
+.user__email {
+    color: #d9d9d9;
+}
+
+.user__op {
+    width: 50px;
+    height: 50px;
+    background-color: #d9d9d9;
+    border: 0 solid white;
+    border-radius: 100%;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.password__Box {
+    margin: auto;
+    width: 80%;
+    max-width: 500px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 30px;
+    text-align: center;
+    padding: 10px;
+}
+
+.password__change {
+    width: 200px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top:11px;
+    border: 1px solid #d9d9d9;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.password__item {
+    border: none;
+    background-color: #d9d9d9;
+    cursor: pointer;
+}
+
+.footer__zone {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.footer__box {
+    width: 35%;
+    height: 20px;
+    border: 1px solid gray;
+    border-radius: 30px;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.footer__txt {
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+.User__Del {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border: 0 solid white;
+    border-radius: 15px;
+    width: 100px;
+    height: 35px;
+    background-color: #d9d9d9;
+    text-align: center;
+}
+
+.User__Del__btn {
+    background-color: #d9d9d9;
+    border: 0 solid white;
+    padding-top: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

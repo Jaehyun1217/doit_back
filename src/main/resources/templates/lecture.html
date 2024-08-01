@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강의</title>
+    <link rel="stylesheet" th:href="@{/css/강의.css}">
+</head>
+<body>
+    <div class="container">
+        <header th:replace="~{layout/fragments :: fragment-header}"></header>
+        <nav class="sub__title">
+            <ul class="nav__main">
+                <li><a href="#"><img th:src="@{/images/item.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/HTML5.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/React.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Vue.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Python.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Java.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Node.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Spring.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Flutter.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/C.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/C++.png}"></a></li>
+            </ul>
+        </nav>
+        <div class="Main__page">
+            <h3 class="maintop__txt"><strong><u>개발 &#8226; 프로그래밍</u></strong> /<strong><u> 프로그래밍 언어</u></strong></h3>
+            <h2 class="mainmid__txt">김재현의 Node.js</h2>
+            <p class="mainbtm__txt"><strong>강사 이름</strong></p>
+        </div>
+        <div class="sub__Main__page">
+            <h3 class="subtop__txt">강의 소개</h3>
+            <h3 class="submid__txt">커리큘럼</h3>
+            <h3 class="subbtm__txt">수강평</h3>
+        </div>
+    </div>
+    <script th:replace="~{layout/fragments :: fragment-script}"></script>
+</body>
+</html>

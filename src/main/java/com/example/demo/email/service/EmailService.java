@@ -37,7 +37,7 @@ public class EmailService {
                 .build();
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-
+        System.out.println("내용 : "+emailMessageDto);
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             mimeMessageHelper.setTo(emailMessageDto.getTo());

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans:400,700&display=swap">
+<link th:href="@{/css/login.css}" rel="stylesheet" />
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<main class="main">
+  <!-- Home Section -->
+  <section class="home">
+    <h1>환영합니다 <span>Coding Onilne Course</span></h1>
+    <button id="sign-up" class="btn">회원가입</button>
+    <button id="sign-in" class="btn">로그인</button>
+    <p><a class="link-copy" href="/" target="_blank">©COC 2024</a></p>
+  </section>
+
+  <!-- Sign Up / Sign In Section -->
+  <section class="sign-up">
+    <article class="signup-left">
+      <div class="img-box">
+        <img th:href="@{/images/Logo4.png}" alt="">
+      </div>
+      <div class="wc_message">
+        <h3>지금바로 시작하세요</h3>
+        <h1>Coding Online Course</h1>
+      </div>
+      <div class="btn-back">
+        <i class="fas fa-2x fa-angle-left angle-left-color"></i>
+        HOME 
+      </div>
+    </article>
+
+    <article class="form-area">
+      <!-- Form area Sign Up -->
+      <div class="organize-form form-area-signup">
+        <h2>회원가입</h2>
+        <form class="form" id="signup-form">
+          <div class="form-field">
+            <label for="name">이름</label>
+            <input type="name" id="name" />
+          </div>
+
+          <div class="form-field">
+            <label for="email">이메일</label>
+            <input type="email" id="email" />
+            <small id="email-error" class="error-message"></small>
+          </div>
+
+          <div class="form-field">
+            <label for="id">아이디</label>
+            <input type="id" id="id" />
+          </div>
+
+          <div class="form-field">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" />
+          </div>
+        </br>
+          <button type="submit" class="btn-sign btn-up">회원가입</button>
+        </form>
+        <p>이미 계정이 있습니까?<a href="#" class="link-in">로그인</a></p>
+
+      </div>
+
+      <!-- Form area Sign In -->
+      <div class="organize-form form-area-signin">
+        <h2>SIGN IN</h2>
+        <form class="form" id="signin-form">
+          <div class="form-field">
+            <label for="email-in">이메일</label>
+            <input type="email" name="email_in" id="email-in" />
+            <small id="email-in-error" class="error-message"></small>
+          </div>
+
+          <div class="form-field">
+            <label for="password-in">비밀번호</label>
+            <input type="password" name="password_in" id="password-in" />
+          </div>
+
+          <button type="submit" class="btn-sign btn-in">로그인</button>
+        </form>
+        <p><a href="#" class="link-up">회원가입</a></p>
+        <p><a href="#" class="link-up">아이디 찾기</a></p>
+        <p><a href="#" class="link-up">비밀번호 찾기</a></p>
+      </div>
+    </article>
+
+    <article class="signup-right">
+      <i class="fas fa-2x fa-bars bars-style"></i>
+      <p><a class="link-copy" href="/" target="_blank">©COC 2024</a></p>
+
+    </article>
+  </section>
+</main>
+
+<script th:src="@{/js/scripts.js}"></script>
+
+</body>
+</html>

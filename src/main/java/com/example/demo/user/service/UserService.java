@@ -75,7 +75,7 @@ public class UserService {
     public SignInResponseDto signIn(SignInRequestDto dto) {
 
         // 유저를 찾고 없으면 에러 반환
-        User user = userRepository.findByUsername(dto.getUserId()).orElseThrow(UserNotFoundException::new);
+        User user = userRepository.findByUsername(dto.getUserName()).orElseThrow(UserNotFoundException::new);
 
         // 유저의 비밀번호가 일치하는지 확인하고 일치하지 않으면 에러 반환
         if (!user.getPassword().equals(dto.getPassword())) {

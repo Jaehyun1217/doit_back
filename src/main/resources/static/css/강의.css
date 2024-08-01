@@ -1,0 +1,246 @@
+a{ /* a태그 초기화*/
+    text-decoration: none;
+    color: white;
+}
+
+
+li{ /* li태그 초기화*/
+    list-style: none;   
+}
+
+body { /* body부분  초기화*/
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container { /* container 1920px로 고정 100%가 더 좋음 초기화*/
+    width: 100%;
+}
+
+header { /* 여기부터 헤더 부분 초기화*/
+    display: flex;
+    align-items: center;
+    background-color: #05144e;
+    padding: 10px;
+}
+
+.logo { /* 로고 200px 중요!! 초기화*/
+    width: 200px;
+    height: auto;
+}
+
+.search-form { /* Header Search form 태그 상위*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 65%;
+}
+
+.search-bar { /*Header 검색 창*/
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.search-button { /*Header 검색 버튼 */
+    position: absolute;
+    right: 10px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.search-button img { /*Header 검색 버튼 이미지 */
+    width: 20px;
+    height: 20px;
+}
+
+.Header__btn__txt{ /*오른쪽 상단 메뉴얼*/
+    width:500px;
+    display:flex;
+    font-size: 23px;
+    color:#fff;
+}
+
+.lecture{ /*오른쪽 상단 메뉴얼 하위 자식*/
+    padding-right: 44px;
+}
+
+.teacher{
+    padding-right: 44px;
+}
+
+.comunity{
+    padding-right: 44px;
+}
+
+.sub__title{ /*중간 로고 상위계층(부모)*/
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav__main { /*중간로고 위치작업*/
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.nav__main li { /*중간 로고 gap 하위계층(자식)*/
+    margin: auto 20px;
+}
+
+.nav__main li { /*중간로고 애니메이션 효과 0.5s 크기 커졋다 줄어듬*/
+    transition: transform 0.5s ease; 
+}
+
+.nav__main li:hover { /*마우스 */
+    transform: scale(1.2); /*현재 로고의 크기에서 1.2배 증가됌*/
+}
+
+.main {
+    width: 80%;
+    margin: 0 auto;
+}
+.main-header {
+    background-color: #4A90E2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+}
+.main-info img {
+    max-width: 100%;
+    height: auto;
+}
+.main-content {
+    margin-top: 20px;
+}
+.main-content h3 {
+    border-bottom: 2px solid #4A90E2;
+    padding-bottom: 10px;
+}
+.tabs {
+    display: flex;
+    margin-top: 20px;
+}
+.tabs button {
+    flex: 1;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    text-align: center;
+}
+.tabs button.active {
+    background-color: #4A90E2;
+    color: white;
+}
+.tab-content {
+    border: 1px solid #ddd;
+    padding: 20px;
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.enroll-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.Main__page{
+    width:100%;
+    height: 300px;
+    background: linear-gradient(to right, #2943A0, #B1DEF1);
+    display: inline-block;
+    color:white;
+}
+
+.maintop__txt{
+    margin-top:40px;
+    margin-left: 85px;
+
+}
+
+.mainmid__txt{
+    font-size: 40px;
+    margin-left: 95px;
+}
+
+.mainbtm__txt{
+    font-size: 20px;
+    color:black;
+    margin-top:70px;
+    margin-left: 85px;
+}
+
+.main__img{
+    background-image: url("")alt("강사이미지");
+}
+
+.sub__Main__page{
+    display: flex;
+}
+
+.submid__txt{
+    padding-left: 33px;
+}
+
+.subtop__txt{
+    padding-left: 33px;
+}
+
+.subbtm__txt{
+    padding-left: 33px;
+}
+.sub__Main__page{
+    border-bottom: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -32,11 +32,10 @@ public class BoardService {
     }
 
     //게시글 작성
-    @Transactional
     public BoardResponse createPost(BoardRequest boardRequest, org.springframework.security.core.userdetails.User resuser){
         User user = getUser(resuser);
-        Board board=Board.from(boardRequest);
         boardRequest.setUser(user);
+        Board board=Board.from(boardRequest);
         boardRepository.save(board); //데이터베이스에 저장
         return new BoardResponse(board); //프론트에 엔티티 전송
     }
@@ -62,7 +61,7 @@ public class BoardService {
         if(boardRepository.findById(boardid).isPresent()){
             Board board = boardRepository.findById(boardid).get(); //특정 보드 가져오기
             if(Objects.equals(board.getUser(), boardRequest.getUser())){
-                boardRequest.setUser(getUser(user));
+                //boardRequest.setUser(getUser(user));
                 board.setTitle(boardRequest.getTitle());
                 board.setContent(boardRequest.getContent());
                 boardRepository.save(board);

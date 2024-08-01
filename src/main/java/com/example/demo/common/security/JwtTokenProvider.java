@@ -8,24 +8,31 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
+
+import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.stereotype.Component;
 
 /**
  * Jwt 와 관련된 기능들을 모아놓은 클래스
  */
-@Service
+@Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
 
@@ -35,6 +42,7 @@ public class JwtTokenProvider {
     @Value("${application.security.jwt.expiration}")
     private long validityInMilliseconds;
 
+    private final MyUserDetails userDetailsService;
     @PostConstruct
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
@@ -69,16 +77,15 @@ public class JwtTokenProvider {
     /**
      * SecurityContext 설정
      */
-    public void setSecurityContext(String token) {
+    public UsernamePasswordAuthenticationToken setSecurityContext(String token) {
         Claims claims = getClaimsFromToken(token);
         List<String> roles = claims.get("auth", List.class);
         List<SimpleGrantedAuthority> authorities = roles.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
+        return UsernamePasswordAuthenticationToken.authenticated(userDetails,token,authorities);
 
-        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                claims.getSubject(), null, authorities);
-        SecurityContextHolder.getContext().setAuthentication(auth);
     }
 
     /**
@@ -92,7 +99,7 @@ public class JwtTokenProvider {
      * header 에서 token 추출
      */
     public String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
+        String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }

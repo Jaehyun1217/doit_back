@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" th:href="@{/css/마이페이지.css}">
+
+</head>
+<body>
+    <div class="container">
+        <header th:replace="~{layout/fragments :: fragment-header}"></header>
+        <nav class="sub__title">
+            <ul class="nav__main">
+                <li><a href="#"><img th:src="@{/images/item.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/HTML5.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/React.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Vue.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Python.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Java.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Node.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Spring.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/Flutter.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/C.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/C++.png}"></a></li>
+            </ul>
+        </nav>
+        <div>
+            <h2 class="option__txt">계정관리</h2>
+            <h3 class="userguide__txt">기본정보</h3>
+            <div class="naming__Box">
+                <p class="user__op"><a href="#"></a></p>
+                <h3 class="user__name">이름</h3>
+                <p class="user__email">이메일</p>
+            </div>
+        </div>
+        <div>
+            <h3 class="password__txt">비밀번호</h3>
+        <div class="password__Box">
+            <form action="/password" method="get" class="password__change"><button class="password__item">비밀번호 변경</button></form>
+        </div>
+    </div>
+    <div class="footer__zone">
+        <h3 class="userDel__Main__txt">계정 삭제</h3>
+        <div class="footer__box">
+            <p class="footer__txt">계정 삭제 시 프로필 및 응시한 테스트 정보가 삭제 됩니다.</p>
+            <form action="/userDel" method="get" class="User__Del"><button class="User__Del__btn">계정 삭제</button></form>
+        </div>
+    </div>
+        </div>
+    <script th:replace="~{layout/fragments :: fragment-script}"></script>
+    </body>
+</html>

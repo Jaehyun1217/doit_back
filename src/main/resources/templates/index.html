@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Site Metas -->
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="">
+
+  <title> COC </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <!-- font awesome style -->
+  <link th:href="@{/css/font-awesome.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <!-- responsive style -->
+  <link th:href="@{/css/responsive.css}" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+<div class="hero_area">
+  <div class="hero_bg_box">
+    <div class="bg_img_box">
+      <img th:src="@{/images/hero-bg.png}" alt="">
+    </div>
+  </div>
+
+  <!-- header section starts -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="index.html">
+          <div class="img-box">
+            <img th:src="@{/images/Logo4.png}" alt="">
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/lecture/info">강의</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/instructor">강사소개</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">커뮤니티</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login"> <i class="fa fa-user" aria-hidden="true"></i> 로그인 </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+  <!-- slider section -->
+  <section class="slider_section">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="detail-box">
+                  <!-- <p> 환영합니다!<br> COC </p> -->
+                  <h1>Welcome to <br> The Future of Learning <br> with COC</h1>
+                  <p style="font-size: 11px;"></p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="img-box">
+                  <img th:src="@{/images/slider-img.png}" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end slider section -->
+</div>
+
+<!-- service section -->
+<section class="service_section layout_padding">
+  <div class="service_container">
+    <div class="container">
+      <div class="heading_container heading_center"></div>
+      <div class="row">
+        <div class="col-md-4">
+          <h5><br><br></h5>
+          <div class="box">
+            <div class="img-box">
+              <img th:src="@{/images/s1.png}" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>일정 추가</h5>
+              <p><br>새로운 목표를 설정하고 달성해보세요.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h1 class="feature-heading">기능소개<br></h1>
+          <div class="box">
+            <div class="img-box">
+              <img th:src="@{/images/s2.png}" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>일정 목록</h5>
+              <p><br>진행 중인 모든 일정을 한 눈에 확인해보세요.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5><br><br></h5>
+          <div class="box">
+            <div class="img-box">
+              <img th:src="@{/images/s3.png}" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>완료된 일정</h5>
+              <p><br>성취한 목표를 기록하고 자랑해보세요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-box">
+        <a class="btn btn-2" href="/login">로그인 후 시작</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end service section -->
+
+<!-- about section -->
+<section class="about_section2 layout_padding">
+  <div class="container">
+    <div class="detail-box">
+      <div class="heading_container heading_center"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-box">
+            <img th:src="@{/images/List2-removebg-preview.png}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <h2>COC 란?</h2>
+            <p>
+              COC는 현대인의 바쁜 삶에서 필수적인 도구로 자리 잡았습니다.
+              우리의 일상은 종종 너무 많은 일들로 인해 혼란스럽고 스트레스를 유발할 수 있습니다.
+              이런 상황에서 COC는 우리에게 지친 마음을 가라앉히고,
+              우리의 생활을 조직화하여 효율적으로 관리할 수 있는 방법을 제시합니다.
+            </p>
+            <p>
+              COC는 우리의 목표를 설정하고 추적하는 데에 도움을 주며,
+              우리가 해야 할 일을 구체적으로 계획할 수 있는 플랫폼을 제공합니다.
+              우리는 이를 통해 중요한 작업을 우선순위에 따라 정렬하고,
+              일상적인 일정을 관리하여 시간을 절약할 수 있습니다.<br>
+            </p>
+            <a class="btn btn-4" href="login.html">더보기<br></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end about section -->
+
+<!-- info section -->
+<section class="info_section layout_padding2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3 info_col">
+        <div class="info_contact">
+          <h4>Address</h4>
+          <div class="contact_link_box">
+            <a href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EC%86%A1%ED%8C%8C%ED%95%99%EC%82%AC">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>Location</span>
+            </a>
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>Call +010 6xx1 45xx</span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>cong5551@gmail.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="info_social">
+          <a href="">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 info_col">
+        <div class="info_detail">
+          <h4>Info</h4>
+          <p style="font-size:14px">
+            안녕하세요! 저는 COC 애플리케이션을 개발하고 유지보수하는 개발자입니다.<br>
+            이 애플리케이션을 사용하면 할 일을 효율적으로 관리할 수 있도록 도와드립니다.<br>
+            사용 중에 궁금한 점이나 제안사항이 있으시면 언제든지 연락해주세요!<br>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-2 mx-auto info_col">
+        <div class="info_link_box">
+          <h4>Links</h4>
+          <div class="info_links">
+            <a class="active" href="index.html">홈</a>
+            <a href="about.html">할 일 추가</a>
+            <a href="service.html">할 일 목록</a>
+            <a href="why.html">완료된 할 일</a>
+            <a href="team.html">설정</a>
+            <a href="/login">로그인</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 info_col">
+        <h4>Subscribe</h4>
+        <form action="#">
+          <input type="text" placeholder="Enter email" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end info section -->
+
+<!-- footer section -->
+
+<!-- jQery -->
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<!-- popper js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<!-- bootstrap js -->
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+<!-- owl slider -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- custom js -->
+<script type="text/javascript" th:src="@{/js/custom.js}"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+<!-- End Google Map -->
+
+</body>
+
+</html>

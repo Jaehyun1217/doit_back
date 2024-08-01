@@ -3,10 +3,26 @@ spring:
     name: demo
   profiles:
     include: db, email
+  thymeleaf:
+    cache: false #thymeleaf 설정//
+  mvc:
+    static-path-pattern: "/static/**"
+  #  prefix: classpath:/templates/   # .html 파일을 불러오기 위한 경로 설정(src/main/resources/templates)
+  #  suffix: .html   # 파일 확장자
+  #  cache: false #/static/**
 
 logging:
   level:
-    root: DEBUG
+    root: debug
+
+
+
+
+
+
+devtools:
+  livereload:
+    enable: true
 
 application:
   security:
@@ -15,6 +31,9 @@ application:
       expiration: 86400000
 
 server:
+  servlet:
+    encoding:
+      force-response: true
   error:
     whitelabel:
       enabled: false

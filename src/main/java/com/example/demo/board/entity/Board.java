@@ -20,15 +20,12 @@ public class Board {
     private Long id;
 
     @JoinColumn(name="user_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private User user;
 
     private LocalDateTime date;
     private String title;
     private String content;
-
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
-    private List<Comment> comment = new ArrayList<>();
 
     public static Board from(BoardRequest boardRequest){
         return Board.builder()
